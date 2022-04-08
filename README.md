@@ -24,6 +24,8 @@ https://sushi.com/
 
 "SushiRoll" at 0x028b7B5b6e65519c7E66b3933fb60D9373C3Af71
 
+"BentoBoxV1" at 0xe420D06405b42301a2333A7cE3a50A58C5Cfe4Da
+
 ## License
 
 [MIT](LICENSE.txt)

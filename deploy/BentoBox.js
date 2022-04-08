@@ -1,28 +1,28 @@
 const { WNATIVE_ADDRESS } = require("@sushiswap/core-sdk");
 
 module.exports = async function ({ getNamedAccounts, deployments }) {
-  // const { deploy } = deployments;
+  const { deploy } = deployments;
 
-  // const { deployer } = await getNamedAccounts();
+  const { deployer } = await getNamedAccounts();
 
-  // const chainId = await getChainId();
+  const chainId = await getChainId();
 
-  // let wethAddress;
+  let wethAddress;
 
-  // if (chainId === "31337" || chainId === "868455272153094") {
-  //   wethAddress = (await deployments.get("WETH9Mock")).address;
-  // } else if (chainId in WNATIVE_ADDRESS) {
-  //   wethAddress = WNATIVE_ADDRESS[chainId];
-  // } else {
-  //   throw Error("No WNATIVE ADDRESS!");
-  // }
+  if (chainId === "31337" || chainId === "868455272153094") {
+    wethAddress = (await deployments.get("WETH9Mock")).address;
+  } else if (chainId in WNATIVE_ADDRESS) {
+    wethAddress = WNATIVE_ADDRESS[chainId];
+  } else {
+    throw Error("No WNATIVE ADDRESS!");
+  }
 
-  // await deploy("BentoBoxV1", {
-  //   from: deployer,
-  //   args: [wethAddress],
-  //   log: true,
-  //   deterministicDeployment: false,
-  // });
+  await deploy("BentoBoxV1", {
+    from: deployer,
+    args: [wethAddress],
+    log: true,
+    deterministicDeployment: false,
+  });
 };
 
-// module.exports.tags = ["BentoBox"];
+module.exports.tags = ["BentoBox"];
