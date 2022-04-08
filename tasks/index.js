@@ -7,6 +7,7 @@ const {
   utils: { defaultAbiCoder },
 } = require("ethers");
 const { MINICHEF_ADDRESS } = require("@sushiswap/core-sdk");
+const { keccak256 } = require("@ethersproject/solidity");
 
 const fs = require("fs");
 
@@ -512,3 +513,12 @@ task("deploy:complex-rewarder", "Deploy ComplexRewarder")
 //     await (await cloneRewarder.transferOwnership(dev, true, false)).wait();
 //   }
 // });
+
+task("compute:INIT_CODE_HASH", "Compute INIT_CODE_HASH")
+  .addParam("address", "Smart Contract Address")
+  .setAction(async function ({ address }, { ethers: { getNamedSigner }, getChainId, deployments }, runSuper) {
+    const byteCode = await ethers.provider.getCode(address);
+    const initCodeHash = keccak256(['bytes'], [byteCode]);
+
+    console.log(`INIT_CODE_HASH:${address} = ${initCodeHash}`);
+});
