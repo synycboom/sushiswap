@@ -17,6 +17,10 @@ import "./tasks"
 
 import { HardhatUserConfig } from "hardhat/types"
 import { removeConsoleLog } from "hardhat-preprocessor"
+const fs = require('fs');
+const a = require("@sushiswap/core-sdk")
+console.log('>>>>>>>>>>>>>>>>>');
+fs.writeFileSync('student-2.json', JSON.stringify(a, null, 2));
 
 const accounts = {
   mnemonic: process.env.MNEMONIC || "test test test test test test test test test test test junk",
@@ -56,6 +60,13 @@ const config: HardhatUserConfig = {
     },
   },
   networks: {
+    godwoken: {
+      url: 'https://godwoken-testnet-web3-v1-rpc.ckbapp.dev',
+      accounts,
+      chainId: 868455272153094,
+      live: true,
+      saveDeployments: true,
+    },
     mainnet: {
       url: `https://mainnet.infura.io/v3/${process.env.INFURA_API_KEY}`,
       accounts,

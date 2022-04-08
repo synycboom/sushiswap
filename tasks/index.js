@@ -447,7 +447,7 @@ task("deploy:complex-rewarder", "Deploy ComplexRewarder")
 
     let miniChefAddress;
 
-    if (chainId === "31337") {
+    if (chainId === "31337" || chainId === "868455272153094") {
       miniChefAddress = (await deployments.get("MiniChefV2")).address;
     } else if (chainId in MINICHEF_ADDRESS) {
       miniChefAddress = MINICHEF_ADDRESS[chainId];
@@ -484,7 +484,7 @@ task("deploy:complex-rewarder", "Deploy ComplexRewarder")
 
 //   let miniChefAddress;
 
-//   if (chainId === "31337") {
+//   if (chainId === "31337" || chainId === "868455272153094") {
 //     miniChefAddress = (await deployments.get("MiniChefV2")).address;
 //   } else if (chainId in MINICHEF_ADDRESS) {
 //     miniChefAddress = MINICHEF_ADDRESS[chainId];
